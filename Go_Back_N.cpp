@@ -71,7 +71,7 @@ class ARQ
 int main()
 {
     ARQ a;
-    // a.input();
-    // a.compute();
+    a.input();
+    a.compute();
     return 0;
 }
