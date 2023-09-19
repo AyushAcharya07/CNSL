@@ -1,65 +1,55 @@
-# include <iostream>
+#include <iostream>
 using namespace std;
 
 int main()
 {
-	string IP[4];
-	int net_id[2];
-	cout<<"\nEnter the IP address : "<<endl;
-	for (int i=0;i<4;i++)
-	{
-		cin>>IP[i];
-	}
+    string IP[4];
+    cout << "\nEnter the IP address: " << endl;
+    for (int i = 0; i < 4; i++)
+    {
+        cin >> IP[i];
+    }
 
-	cout<<"\nThe IP address is: "<<endl;
-	for (int i=0;i<3;i++)
-	{
-		cout<<IP[i]<<".";
-	}
+    cout << "\nThe entered IP address is: ";
+    for (int i = 0; i < 3; i++)
+    {
+        cout << IP[i] << ".";
+    }
+    cout << IP[3] << endl; // Print the last octet without a trailing '.'
 
-	if (stoi(IP[0])<=127)
-	{
-		cout<<"\nClass A IP Address "<<endl;
-		net_id=stoi(ID[0]);
-		cout<<"\nNetwork ID is : "<<net_id<<endl;
-		cout<<"\nThe Subnet Mask is : 255.0.0.0"<<endl;
-	}
-	else if ((stoi(IP[0])>=128) && (stoi(IP[0])<=191))
-	{
-		cout<<"\nClass B IP Address"<<endl;
-		net_id=stoi(ID[0]);
-		cout<<"\nNetwork ID is : "<<net_id<<endl;
-		cout<<"\nThe Subnet Mask is : 255.255.0.0"<<endl;
-	}
+    int firstOctet = stoi(IP[0]);
 
-	else if ((stoi(IP[0])>=192) && (stoi(IP[0])<=223))
-	{
-		cout<<"\nClass C IP Address"<<endl;
-		net_id=stoi(ID[0]);
-		cout<<"\nNetwork ID is : "<<net_id<<endl;
-		cout<<"\nThe Subnet Mask is : 255.255.255.0"<<endl;
-	}
+    if (firstOctet >= 0 && firstOctet <= 127)
+    {
+        cout << "\nClass A IP Address" << endl;
+        cout << "\nThe Subnet Mask is : 255.0.0.0" << endl;
+    }
+    else if (firstOctet >= 128 && firstOctet <= 191)
+    {
+        cout << "\nClass B IP Address" << endl;
+        cout << "\nThe Subnet Mask is : 255.255.0.0" << endl;
+    }
+    else if (firstOctet >= 192 && firstOctet <= 223)
+    {
+        cout << "\nClass C IP Address" << endl;
+        cout << "\nThe Subnet Mask is : 255.255.255.0" << endl;
+    }
+    else if (firstOctet >= 224 && firstOctet <= 239)
+    {
+        cout << "\nClass D IP Address" << endl;
+        cout << "\nThere is no Subnet Mask for Class D IP Addresses" << endl;
+        cout << "\nThis is used for Multicasting" << endl;
+    }
+    else if (firstOctet >= 240 && firstOctet <= 255)
+    {
+        cout << "\nClass E IP Address" << endl;
+        cout << "\nThere is no Subnet Mask for Class E IP Addresses" << endl;
+        cout << "\nThis is reserved" << endl;
+    }
+    else
+    {
+        cout << "\nInvalid IP Address" << endl;
+    }
 
-	else if ((stoi(IP[0])>=224) && (stoi(IP[0])<=239))
-	{
-		cout<<"\nClass D IP Address"<<endl;
-		net_id=stoi(ID[0]);
-		cout<<"\nNetwork ID is : "<<net_id<<endl;
-		cout<<"\nThere is no Subnet Mask for Class D IP Addresses "<<endl;
-		cout<<"\nThis is used for Multicasting"<<endl;
-	}
-
-	else
-	{
-		cout<<"\nClass B IP Address"<<endl;
-		net_id=stoi(ID[0]);
-		cout<<"\nNetwork ID is : "<<net_id<<endl;
-		cout<<"\nThere is no Subnet Mask for Class E IP Addresses "<<endl;
-		cout<<"\nThis is reserved"<<endl;
-		
-	}
-
-		
-
-	return 0;
+    return 0;
 }
